@@ -56,6 +56,11 @@ input::placeholder {
   font-size: 25px;
 }
 
-#litsBtn {
+#litsBtn,
+#clearDones,
+#defaultCheck,
+#dots,
+.fa-ellipsis-v,
+.fa-trash {
   cursor: pointer;
 }
