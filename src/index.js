@@ -16,7 +16,7 @@ class UI {
     const datas = listArray.map((item) => `<div class="col-12" id="list">
                 <p class="checkboxP"> 
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck">
-                <span id="description">${item.discription}</span>
+                <span contenteditable="false" index='${item.index}' id="description">${item.discription}</span>
                 </p>
                 <span><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
             </div>`);
@@ -52,11 +52,6 @@ btn.addEventListener('submit', (e) => {
 
 // Retrieve the listArray from Local Storage when the page is loaded..😎😊😉😎............
 
-if (localStorage.getItem('listArray')) {
-  listArray = JSON.parse(localStorage.getItem('listArray'));
-  UI.displayData();
-}
-
 // funtion for marking done lists😎😊😉😎............
 
 listHolder.addEventListener('change', (event) => {
@@ -68,15 +63,65 @@ listHolder.addEventListener('change', (event) => {
   }
 });
 
+if (localStorage.getItem('listArray')) {
+  listArray = JSON.parse(localStorage.getItem('listArray'));
+  UI.displayData();
+}
+
 listHolder.addEventListener('click', (event) => {
   if (event.target.classList.contains('fa-ellipsis-v')) {
     event.target.classList.remove('fa-ellipsis-v');
     event.target.classList.add('fa-trash');
     event.target.parentElement.parentElement.style.backgroundColor = '#f39c12';
+    const targeted = event.target.parentNode.previousElementSibling.lastElementChild;
+    targeted.contentEditable = 'true';
   } else if (event.target.classList.contains('fa-trash')) {
     event.target.parentElement.parentElement.remove();
   }
 });
+
+listHolder.addEventListener('click', (event) => {
+  if (event.target.closest('#description')) {
+    const inputText = event.target.closest('#description');
+    inputText.addEventListener('input', () => {
+      /* element.contentText; */
+      const taskElm = inputText.parentNode.parentNode;
+      const index = Array.prototype.indexOf.call(listHolder.children, taskElm);
+      listArray[index].description = inputText.textContent;
+
+      localStorage.setItem('listArray', JSON.stringify(listArray));
+      // const local = JSON.parse(localStorage.getItem('listArray'));
+    });
+  }
+});
+window.addEventListener('load', () => {
+  if (localStorage.getItem('listArray')) {
+    listArray = JSON.parse(localStorage.getItem('listArray'));
+    UI.displayData();
+  }
+});
+/*
+lists.forEach((list) =>{
+   list.addEventListener('click', () => {
+    console.log('clicked');
+   })
+})
+
+  Editing the list *********inputText.addEventListener(
+      'input',
+      (e) => {
+        const parent = document.querySelector('.list-container');
+        const child = e.target.closest('.task-container');
+        saveData(editText(loadData(), parent, child, inputText.textContent));
+      },
+      false,
+    );
+*/
+
+if (localStorage.getItem('listArray')) {
+  listArray = JSON.parse(localStorage.getItem('listArray'));
+  UI.displayData();
+}
 
 // Function to remove completed items from the listArray and the DOM
 function removeCompleted() {
@@ -90,3 +135,8 @@ function removeCompleted() {
 
 // Add a click event listener to the cleanAllDone element
 cleanAllDone.addEventListener('click', removeCompleted);
+
+if (localStorage.getItem('listArray')) {
+  listArray = JSON.parse(localStorage.getItem('listArray'));
+  UI.displayData();
+}
