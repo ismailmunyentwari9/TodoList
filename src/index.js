@@ -16,7 +16,7 @@ class UI {
     const datas = listArray.map((item) => `<div class="col-12" id="list">
                 <p class="checkboxP"> 
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck">
-                <span contenteditable="false" index='${item.index}' id="description">${item.discription}</span>
+                <span contenteditable="false" index='${item.index}' id="discription">${item.discription}</span>
                 </p>
                 <span><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
             </div>`);
@@ -76,24 +76,23 @@ listHolder.addEventListener('click', (event) => {
     const targeted = event.target.parentNode.previousElementSibling.lastElementChild;
     targeted.contentEditable = 'true';
   } else if (event.target.classList.contains('fa-trash')) {
+    const index = event.target.parentElement.parentElement.getAttribute('data-index');
+    listArray.splice(index, 1);
+    localStorage.setItem('listArray', JSON.stringify(listArray));
     event.target.parentElement.parentElement.remove();
   }
 });
+listHolder.addEventListener('input', (e) => {
+  if (e.target.closest('#discription')) {
+    const inputText = e.target.closest('#discription');
+    const taskElm = inputText.parentNode.parentNode;
+    const index = Array.prototype.indexOf.call(listHolder.children, taskElm);
+    listArray[index].discription = e.target.textContent;
 
-listHolder.addEventListener('click', (event) => {
-  if (event.target.closest('#description')) {
-    const inputText = event.target.closest('#description');
-    inputText.addEventListener('input', () => {
-      /* element.contentText; */
-      const taskElm = inputText.parentNode.parentNode;
-      const index = Array.prototype.indexOf.call(listHolder.children, taskElm);
-      listArray[index].description = inputText.textContent;
-
-      localStorage.setItem('listArray', JSON.stringify(listArray));
-      // const local = JSON.parse(localStorage.getItem('listArray'));
-    });
+    localStorage.setItem('listArray', JSON.stringify(listArray));
   }
 });
+
 window.addEventListener('load', () => {
   if (localStorage.getItem('listArray')) {
     listArray = JSON.parse(localStorage.getItem('listArray'));
