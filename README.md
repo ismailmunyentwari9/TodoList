@@ -23,7 +23,7 @@
 it includes :  <br>
 -List descriptions <br>
 -Marking lists as done on the list <br>
--Removing lists that marked as done <br>
+-Removing lists that mark   ed as done <br>
 🛠 Built With<br>
 **Key Features**<br>
 simple Todo list Application, built with html5 & css3 and Javascript including linter configurattion.<br>
