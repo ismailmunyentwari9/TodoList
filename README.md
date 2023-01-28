@@ -16,7 +16,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 [Portflolio website ] <a name="about-project"></a>
+# 📖 [TodoList Project ] <a name="about-project"></a>
 
 
 *[Todo list project]* It's an application wich helps to make a list of activities that someone needs to accomplish within a day
@@ -33,7 +33,8 @@ simple Todo list Application, built with html5 & css3 and Javascript including l
 [Mark lists as done]<br>
 [Add Remove done lits]<br>
 **Tech Stack**<br>
-This portfolio project, was built with html5 and css3
+This TodoList
+project, was built with html5 and css3
 
 Client<br>
 **.HTML**
