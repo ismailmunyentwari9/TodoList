@@ -1,0 +1,66 @@
+main {
+  box-shadow: 12px 12px 12px 9px silver;
+  width: 45% !important;
+  margin-top: 12%;
+  padding: 4px 30px;
+}
+
+#list,
+#todays {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid darkgray;
+  padding: 12px;
+  box-shadow: 2px 2px 2px darkgrey;
+}
+
+#list span {
+  font-size: 15px;
+}
+
+#defaultCheck1 {
+  border-color: black;
+  margin-right: 12px;
+}
+
+input {
+  height: 3rem;
+  border: none;
+  border-bottom: 0.5px solid darkgray;
+  box-sizing: border-box;
+}
+
+#input,
+.input-group {
+  padding: 0;
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  font-style: italic;
+  font-size: 20px;
+}
+
+#footer {
+  padding: 20px;
+  background-color: rgb(246, 244, 243);
+}
+
+#footer p {
+  text-align: center;
+  font-size: 25px;
+}
+
+#litsBtn,
+#clearDones,
+#defaultCheck,
+#dots,
+.fa-ellipsis-v,
+.fa-trash {
+  cursor: pointer;
+}
